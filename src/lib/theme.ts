@@ -1,18 +1,20 @@
 'use client'
-import { Roboto } from 'next/font/google'
 
 import { createTheme } from '@mui/material/styles'
 
-const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-})
-
 const theme = createTheme({
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    // fontFamily: roboto.style.fontFamily,
+    allVariants: { color: '#444444' },
+    fontSize: 12,
   },
+
+  palette: {
+    primary: { main: '#2d2aa5' },
+    secondary: { main: '#41caa2' },
+  },
+
+  shape: { borderRadius: 20 },
 })
 
 export default theme
