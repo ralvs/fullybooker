@@ -16,7 +16,9 @@ const TopNav = () => {
   return (
     <nav>
       <Container maxWidth='lg' sx={sx.navContainer}>
-        <Typography variant='h6'>Fully Booker</Typography>
+        <Typography variant='h6' color='primary'>
+          Fully Booker
+        </Typography>
         <Avatar alt='Renan Alves' src='/api/mockCloud/avatar.jpg' />
       </Container>
       <Divider sx={{ pt: 1 }} />

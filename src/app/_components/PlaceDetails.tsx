@@ -1,12 +1,21 @@
+import Link from 'next/link'
+
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
+import ChevronLeft from '@mui/icons-material/ChevronLeft'
+import Favorite from '@mui/icons-material/Favorite'
 import KingBedIcon from '@mui/icons-material/KingBed'
 import LuggageIcon from '@mui/icons-material/Luggage'
 import ShowerIcon from '@mui/icons-material/Shower'
 
-// It's possible to use styled-components with MUI but it only works with 'use clients'
+import { db } from '@/server/db'
+
+// It's possible to use styled-components with MUI but they only work with 'use clients' components. I'm trying to use client components only where it's absolute necessary.
 // const ContentBox = styled(Box)({
 //   display: 'flex',
 //   flexDirection: 'column',
@@ -14,7 +23,15 @@ import ShowerIcon from '@mui/icons-material/Shower'
 //   gap: 4,
 // });
 
+// styles fot this component
 const sx = {
+  nav: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'space-between',
+    pb: 2,
+  },
+
   content: {
     display: 'flex',
     flexDirection: 'column',
@@ -31,46 +48,74 @@ const sx = {
   withBorder: { borderRight: '1px solid #ccc' },
 }
 
-const PlaceDetails = async () => {
+const PlaceDetails = async ({ id }: { id: number }) => {
+  // getting only the needed data for this component
+  const data = await db.place.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      name: true,
+      shortDesc: true,
+      description: true,
+      guests: true,
+      bedrooms: true,
+      bathrooms: true,
+    },
+  })
+
   return (
-    <Box sx={sx.content}>
-      <Typography variant='h4'>Bethel Woods Serenity: Your Autumn Escape</Typography>
-      <Typography variant='subtitle1' color='text.secondary' align='justify'>
-        The Hemlock House at Bethel Woods: Stunning A-Frame 5 Mins From Bethel Woods Center
-      </Typography>
+    <>
+      {/* Navigation */}
+      <Box sx={sx.nav}>
+        <Link href='/'>
+          <Button variant='text' color='primary' startIcon={<ChevronLeft />}>
+            Back
+          </Button>
+        </Link>
+        <Tooltip placement='top' title='Add to favorites'>
+          <IconButton>
+            <Favorite />
+          </IconButton>
+        </Tooltip>
+      </Box>
 
-      <Grid container spacing={2}>
-        <Grid item xs={3.5} sx={{ ...sx.gridItem, ...sx.withBorder }}>
-          <LuggageIcon fontSize='large' color='action' />
-          <div>
-            <Typography variant='h3'>8</Typography>
-            <Typography variant='body1'>Guests</Typography>
-          </div>
-        </Grid>
-        <Grid item xs={4} sx={{ ...sx.gridItem, ...sx.withBorder }}>
-          <KingBedIcon fontSize='large' color='action' />
-          <div>
-            <Typography variant='h3'>3</Typography>
-            <Typography variant='body1'>Bedsrooms</Typography>
-          </div>
-        </Grid>
-        <Grid item xs={4} sx={sx.gridItem}>
-          <ShowerIcon fontSize='large' color='action' />
-          <div>
-            <Typography variant='h3'>3</Typography>
-            <Typography variant='body1'>Bathrooms</Typography>
-          </div>
-        </Grid>
-      </Grid>
+      {/* Place descriptions */}
+      <Box sx={sx.content}>
+        <Typography variant='h4'>{data?.name}</Typography>
 
-      <Typography variant='body1' align='justify'>
-        Welcome to The Hemlock House at Bethel Woods – a gorgeous modern home surrounded by woodlands of
-        Eastern pine and hemlock trees. In 1969 Bethel Woods was home to the notorious Woodstock festival.
-        Located in the country hills of the Sullivan Catskills, Bethel Woods is an amazing place to explore,
-        hike, and listen to live music. Just 5 minutes away from Bethel Woods Center of the Arts, you will
-        find a stunning A-Frame home waiting to host your next adventure.
-      </Typography>
-    </Box>
+        <Typography variant='subtitle1' color='text.secondary' align='justify'>
+          {data?.shortDesc}
+        </Typography>
+
+        <Grid container spacing={2}>
+          <Grid item xs={3.5} sx={{ ...sx.gridItem, ...sx.withBorder }}>
+            <LuggageIcon fontSize='large' color='action' />
+            <div>
+              <Typography variant='h3'>{data?.guests}</Typography>
+              <Typography variant='body1'>Guests</Typography>
+            </div>
+          </Grid>
+          <Grid item xs={4} sx={{ ...sx.gridItem, ...sx.withBorder }}>
+            <KingBedIcon fontSize='large' color='action' />
+            <div>
+              <Typography variant='h3'>{data?.bedrooms}</Typography>
+              <Typography variant='body1'>Bedsrooms</Typography>
+            </div>
+          </Grid>
+          <Grid item xs={4} sx={sx.gridItem}>
+            <ShowerIcon fontSize='large' color='action' />
+            <div>
+              <Typography variant='h3'>{data?.bathrooms}</Typography>
+              <Typography variant='body1'>Bathrooms</Typography>
+            </div>
+          </Grid>
+        </Grid>
+
+        <Typography variant='body1' align='justify'>
+          {data?.description}
+        </Typography>
+      </Box>
+    </>
   )
 }
 

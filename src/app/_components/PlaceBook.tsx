@@ -1,9 +1,5 @@
-'use client'
-
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import dayjs, { Dayjs } from 'dayjs'
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import dayjs from 'dayjs'
 
 import Button from '@mui/material/Button'
 import FormControl from '@mui/material/FormControl'
@@ -15,6 +11,8 @@ import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
+import { db } from '@/server/db'
+
 const sx = {
   container: {
     p: 3,
@@ -24,24 +22,46 @@ const sx = {
   },
 }
 
-const PlaceBook = () => {
+const PlaceBook = async ({ id }: { id: number }) => {
+  // getting only the needed data for this component
+  const data = await db.place.findUnique({
+    where: { id },
+    select: { price: true },
+  })
+
   return (
     <Paper elevation={4} sx={sx.container}>
       <Grid container spacing={2}>
         <Grid item xs={12} sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography variant='h6' sx={{ fontWeight: 'bold', pr: 1 }}>
-            $350
+            ${data?.price ?? 'There is something wrong!'}
           </Typography>
           <Typography variant='subtitle2'> / night</Typography>
         </Grid>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Grid item xs={6}>
-            <DatePicker sx={{ width: '100%' }} label='Check-in' defaultValue={dayjs()} />
-          </Grid>
-          <Grid item xs={6}>
-            <DatePicker sx={{ width: '100%' }} label='Check-out' defaultValue={dayjs()} />
-          </Grid>
-        </LocalizationProvider>
+
+        <Grid item xs={6}>
+          {/* <DatePicker sx={{ width: '100%' }} label='Check-in' defaultValue={dayjs()} /> */}
+          <TextField
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            required
+            name='checkin'
+            label='Check-in'
+            type='date'
+            defaultValue={dayjs().add(1, 'day').format('YYYY-MM-DD')}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            fullWidth
+            InputLabelProps={{ shrink: true }}
+            required
+            name='checkin'
+            label='Check-in'
+            type='date'
+            defaultValue={dayjs().add(1, 'day').format('YYYY-MM-DD')}
+          />
+        </Grid>
         <Grid item xs={12}>
           <FormControl fullWidth>
             <InputLabel id='label-id'>Guests</InputLabel>

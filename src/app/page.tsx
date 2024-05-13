@@ -1,38 +1,19 @@
-import Grid from '@mui/material/Grid'
+import Link from 'next/link'
 
-// import { CreatePost } from '@/app/_components/create-post'
-// import { api } from '@/trpc/server'
+import Typography from '@mui/material/Typography'
 
-import PlaceBook from './_components/PlaceBook'
-import PlaceDetails from './_components/PlaceDetails'
-import PlaceImages from './_components/PlaceImages'
-
-export default async function Home() {
-  // const hello = await api.post.hello({ text: 'from tRPC' })
-
+const Index = () => {
   return (
-    <Grid container rowSpacing={8} columnSpacing={6}>
-      <Grid item xs={12}>
-        <PlaceImages />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <PlaceDetails />
-      </Grid>
-      <Grid item xs={12} md={4}>
-        <PlaceBook />
-      </Grid>
-    </Grid>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <Typography variant='body1'>This page is not style because it is not part the requirements.</Typography>
+      <Typography variant='body1'>Please, click on the links below to see the properties pages.</Typography>
+      <br />
+
+      <Link href='/place/1'>Place 1</Link>
+      <Link href='/place/2'>Place 2</Link>
+      <Link href='/place/3'>Place 3</Link>
+    </div>
   )
 }
 
-// async function CrudShowcase() {
-//   const latestPost = await api.post.getLatest()
-
-//   return (
-//     <div>
-//       {latestPost ? <p>Your most recent post: {latestPost.name}</p> : <p>You have no posts yet.</p>}
-
-//       <CreatePost />
-//     </div>
-//   )
-// }
+export default Index
