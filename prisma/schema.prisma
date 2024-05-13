@@ -10,11 +10,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  name     String
+  avatar   String    @default("") // https://i.pravatar.cc/150
+  bookings Booking[]
+}
+
+model Place {
+  id          Int       @id @default(autoincrement())
+  name        String
+  shortDesc   String
+  description String
+  guests      Int
+  bedrooms    Int
+  bathrooms   Int
+  price       Int
+  images      Image[]
+  bookings    Booking[]
+}
+
+model Image {
+  id      Int    @id @default(autoincrement())
+  url     String
+  placeId Int
+  place   Place  @relation(fields: [placeId], references: [id])
+}
+
+model Booking {
   id        Int      @id @default(autoincrement())
-  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@index([name])
+  checkIn   DateTime
+  checkOut  DateTime
+  userId    Int
+  placeId   Int
+  user      User     @relation(fields: [userId], references: [id])
+  place     Place    @relation(fields: [placeId], references: [id])
 }
