@@ -1,10 +1,12 @@
 'use client'
 
+import { GeistSans } from 'geist/font/sans'
+
 import { createTheme } from '@mui/material/styles'
 
 const theme = createTheme({
   typography: {
-    // fontFamily: roboto.style.fontFamily,
+    fontFamily: GeistSans.style.fontFamily,
     allVariants: { color: '#444444' },
     fontSize: 12,
   },

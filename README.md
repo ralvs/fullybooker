@@ -10,7 +10,7 @@ Bootstrapped with `create-t3-app` and using:
 
 ## What's the objective?
 
-Create one webpage that allows a user to create / manage bookings.
+Create one webpage that allows a user to create / manage bookings.<br>
 I choose to use Next.js v14 and it's new powerfull features Server Components and Server Actions
 
 
@@ -18,7 +18,7 @@ I choose to use Next.js v14 and it's new powerfull features Server Components an
 
 Please clone this repository and run the folloing commands:
 
-`npm install`
-`npm run db:init`
-`npm run build`
+`npm install`<br>
+`npm run db:init`<br>
+`npm run build`<br>
 `npm run start`
