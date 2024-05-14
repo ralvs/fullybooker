@@ -25,14 +25,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Toaster
           position='top-center'
           toastOptions={{
+            duration: 3000,
             style: { padding: '16px' },
             // like the notistack package
             success: {
               style: { color: 'white', background: '#43a047' },
               iconTheme: { primary: 'white', secondary: '#43a047' },
             },
-            // warning: { style: { background: '#ff9800' } },
-            error: { style: { background: '#d32f2f' } },
+            error: {
+              style: { color: 'white', background: '#d32f2f' },
+              iconTheme: { primary: 'white', secondary: '#d32f2f' },
+            },
           }}
         />
 

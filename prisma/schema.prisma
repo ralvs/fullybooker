@@ -26,7 +26,7 @@ model Place {
   guests      Int
   bedrooms    Int
   bathrooms   Int
-  price       Int
+  price       Int // for the sake of multiply monetary values, price has to be Integer
   images      Image[]
   bookings    Booking[]
 }
@@ -44,6 +44,7 @@ model Booking {
   updatedAt DateTime @updatedAt
   checkIn   DateTime
   checkOut  DateTime
+  guests    Int
   userId    Int
   placeId   Int
   user      User     @relation(fields: [userId], references: [id])
