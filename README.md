@@ -21,6 +21,7 @@ Combined with Prisma.io, Reac Hook Form and Zod, make an incredible stack.
 Please clone this repository and run the folloing commands:
 
 `npm install`<br>
+`echo 'DATABASE_URL="file:./db.sqlite"' > .env`<br>
 `npm run db:init`<br>
 `npm run build`<br>
 `npm run start`
