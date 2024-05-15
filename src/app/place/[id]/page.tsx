@@ -1,5 +1,8 @@
+import { Suspense } from 'react'
+
 import Grid from '@mui/material/Grid'
 
+import Loading from '@/app/_components/Loading'
 import PlaceBook from '@/app/_components/PlaceBook'
 import PlaceDetails from '@/app/_components/PlaceDetails'
 import PlaceImages from '@/app/_components/PlaceImages'
@@ -13,13 +16,26 @@ const Place = ({ params: { id } }: { params: { id: number } }) => {
   return (
     <Grid container rowSpacing={8} columnSpacing={6}>
       <Grid item xs={12}>
-        <PlaceImages id={id} />
+        <Suspense
+          fallback={
+            // As the images are on the top and usually take more time to load, I'm using a fixed height to avoid the layout shift.
+            <div style={{ height: '25vw' }}>
+              <Loading contained />
+            </div>
+          }
+        >
+          <PlaceImages id={id} />
+        </Suspense>
       </Grid>
       <Grid item xs={12} md={8}>
-        <PlaceDetails id={id} />
+        <Suspense fallback={<Loading contained />}>
+          <PlaceDetails id={id} />
+        </Suspense>
       </Grid>
       <Grid item xs={12} md={4}>
-        <PlaceBook id={id} />
+        <Suspense fallback={<Loading contained />}>
+          <PlaceBook id={id} />
+        </Suspense>
       </Grid>
     </Grid>
   )

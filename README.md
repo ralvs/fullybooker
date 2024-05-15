@@ -11,8 +11,10 @@ Bootstrapped with `create-t3-app` and using:
 ## What's the objective?
 
 Create one webpage that allows a user to create / manage bookings.<br>
-I choose to use Next.js v14 and it's new powerfull features Server Components and Server Actions
+I choose to use Next.js v14 because of it's powerfull set of features, like the Image component and App Router, and also because it supports the new React Server Components and React Server Actions.<br>
+Combined with Prisma.io, Reac Hook Form and Zod, make an incredible stack.
 
+#### *Attention: every request has a forced delay of 1 or 2 seconds to simulate a real network*
 
 ## How to test on your machine?
 

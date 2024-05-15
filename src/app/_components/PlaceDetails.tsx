@@ -13,6 +13,7 @@ import KingBedIcon from '@mui/icons-material/KingBed'
 import LuggageIcon from '@mui/icons-material/Luggage'
 import ShowerIcon from '@mui/icons-material/Shower'
 
+import { simulateDelay } from '@/lib/helpers'
 import { db } from '@/server/db'
 
 // It's possible to use styled-components with MUI but they only work with 'use clients' components. I'm trying to use client components only where it's absolute necessary.
@@ -49,6 +50,8 @@ const sx = {
 }
 
 const PlaceDetails = async ({ id }: { id: number }) => {
+  await simulateDelay(1000) // 1 second
+
   // getting only the needed data for this component
   const data = await db.place.findUnique({
     where: { id },

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
+import { simulateDelay } from '@/lib/helpers'
 import { db } from '@/server/db'
 
 const sx = {
@@ -24,6 +25,8 @@ const sx = {
 }
 
 const PlaceImages = async ({ id }: { id: number }) => {
+  await simulateDelay(2000) // 2 second
+
   // getting only the needed data for this component
   const data = await db.place.findUnique({
     where: { id },
@@ -38,7 +41,7 @@ const PlaceImages = async ({ id }: { id: number }) => {
     <Grid container spacing={1}>
       <Grid item xs={12} sm={6} sx={sx.gridHeigth}>
         <Box sx={{ position: 'relative', height: '100%' }}>
-          <ImageCustom src={data?.images[0]?.url ?? ''} />
+          <ImageCustom src={data?.images[0]?.url ?? ''} priority={true} />
         </Box>
       </Grid>
       <Grid item xs={6} sm={3} sx={sx.gridHeigth}>
@@ -63,6 +66,15 @@ const PlaceImages = async ({ id }: { id: number }) => {
 
 export default PlaceImages
 
-const ImageCustom = ({ src }: { src: string }) => {
-  return <Image alt='place' src={src} fill style={{ objectFit: 'cover', borderRadius: 20 }} />
+const ImageCustom = ({ src, priority = false }: { src: string; priority?: boolean }) => {
+  return (
+    <Image
+      alt='place'
+      src={src}
+      priority={priority}
+      fill
+      sizes='50vw'
+      style={{ objectFit: 'cover', borderRadius: 20 }}
+    />
+  )
 }
