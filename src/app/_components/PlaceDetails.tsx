@@ -81,7 +81,7 @@ const PlaceDetails = async ({ id }: { id: number }) => {
       {/* Navigation */}
       <Box sx={sx.nav}>
         <Link href='/'>
-          <Button variant='text' color='primary' startIcon={<ChevronLeft />}>
+          <Button variant='text' color='primary' startIcon={<ChevronLeft />} data-cy='back-button'>
             Back
           </Button>
         </Link>

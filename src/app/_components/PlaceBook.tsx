@@ -44,7 +44,7 @@ const PlaceBook = async ({ id }: { id: number }) => {
     <>
       <Paper elevation={4} sx={sx.container}>
         <Box sx={{ display: 'flex', alignItems: 'center', pb: 4 }}>
-          <Typography variant='h6' sx={{ fontWeight: 'bold', pr: 1 }}>
+          <Typography variant='h6' sx={{ fontWeight: 'bold', pr: 1 }} data-cy='book-price'>
             ${data?.price ?? 'There is something wrong!'}
           </Typography>
           <Typography variant='subtitle2'> / night</Typography>

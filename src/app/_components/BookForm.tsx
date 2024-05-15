@@ -72,6 +72,8 @@ const BookForm = ({ bookId = 0, placeId = 0, guests = 1 }) => {
                     textField: {
                       error: !!errors.checkIn,
                       helperText: `${errors.checkIn?.message ?? ''}`,
+                      // @ts-expect-error - data-cy is not in the type definition but needed for Cypress
+                      'data-cy': 'checkIn',
                     },
                   }}
                 />
@@ -94,6 +96,8 @@ const BookForm = ({ bookId = 0, placeId = 0, guests = 1 }) => {
                     textField: {
                       error: !!errors.checkOut,
                       helperText: `${errors.checkOut?.message ?? ''}`,
+                      // @ts-expect-error - data-cy is not in the type definition but needed for Cypress
+                      'data-cy': 'checkOut',
                     },
                   }}
                 />
@@ -119,7 +123,7 @@ const BookForm = ({ bookId = 0, placeId = 0, guests = 1 }) => {
               render={({ field }) => (
                 <FormControl fullWidth error={!!errors.guests}>
                   <InputLabel id='label-id'>Guests</InputLabel>
-                  <Select {...field} label='Guests' labelId='label-id'>
+                  <Select {...field} label='Guests' labelId='label-id' data-cy='guests'>
                     {[...Array<number>(guests)].map((_, index) => (
                       <MenuItem key={index + 1} value={index + 1}>
                         {index + 1} guests
@@ -139,6 +143,7 @@ const BookForm = ({ bookId = 0, placeId = 0, guests = 1 }) => {
               variant='contained'
               fullWidth
               disabled={isSubmitting}
+              data-cy='submit-button'
             >
               {isSubmitting ? <Loading /> : bookId ? 'Update your booking' : 'Book'}
             </Button>
