@@ -38,18 +38,6 @@ importers:
       '@t3-oss/env-nextjs':
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
-      '@tanstack/react-query':
-        specifier: ^5.36.1
-        version: 5.36.1(react@18.2.0)
-      '@trpc/client':
-        specifier: next
-        version: 11.0.0-rc.370(@trpc/server@11.0.0-rc.370)
-      '@trpc/react-query':
-        specifier: next
-        version: 11.0.0-rc.370(@tanstack/react-query@5.36.1(react@18.2.0))(@trpc/client@11.0.0-rc.370(@trpc/server@11.0.0-rc.370))(@trpc/server@11.0.0-rc.370)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@trpc/server':
-        specifier: next
-        version: 11.0.0-rc.370
       dayjs:
         specifier: ^1.11.11
         version: 1.11.11
@@ -559,31 +547,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  '@tanstack/query-core@5.36.1':
-    resolution: {integrity: sha512-BteWYEPUcucEu3NBcDAgKuI4U25R9aPrHSP6YSf2NvaD2pSlIQTdqOfLRsxH9WdRYg7k0Uom35Uacb6nvbIMJg==}
-
-  '@tanstack/react-query@5.36.1':
-    resolution: {integrity: sha512-BxGdE0DQYcLYJoEWVerxgT8iLLbjM8DOB8C0ASwyLeJZC2hqYYjWa8g4KQOaquB2Z+tf7qsH5FS63fvCoX+eVA==}
-    peerDependencies:
-      react: ^18.0.0
-
-  '@trpc/client@11.0.0-rc.370':
-    resolution: {integrity: sha512-3s3NuJ1wwIod96a2BEXwmCacROfeMnUOhBa9pi/ksQzrr0KkFXeJWsLcHwL8XmZRZ93scPLnX7I7jGTW2ol68w==}
-    peerDependencies:
-      '@trpc/server': 11.0.0-rc.370+1a920ac81
-
-  '@trpc/react-query@11.0.0-rc.370':
-    resolution: {integrity: sha512-DGPJdBsjtshHIh2RLLt+GCEAJaSDoRmJ0hmQF8MGru+7BK5qLlR6N7WFmL4wegs3sV6dov/pyoBXatm0qx3p+g==}
-    peerDependencies:
-      '@tanstack/react-query': ^5.25.0
-      '@trpc/client': 11.0.0-rc.370+1a920ac81
-      '@trpc/server': 11.0.0-rc.370+1a920ac81
-      react: '>=18.2.0'
-      react-dom: '>=18.2.0'
-
-  '@trpc/server@11.0.0-rc.370':
-    resolution: {integrity: sha512-wmAujmM8C21UgSk408436OolK5iOKgLUkMvp1LjON++MRNmZYmFb6JmnjPHn0K9wX0V0qMlME2NGb7v8uTB3lw==}
 
   '@types/eslint@8.56.10':
     resolution: {integrity: sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==}
@@ -2437,27 +2400,6 @@ snapshots:
       zod: 3.23.8
     optionalDependencies:
       typescript: 5.4.5
-
-  '@tanstack/query-core@5.36.1': {}
-
-  '@tanstack/react-query@5.36.1(react@18.2.0)':
-    dependencies:
-      '@tanstack/query-core': 5.36.1
-      react: 18.2.0
-
-  '@trpc/client@11.0.0-rc.370(@trpc/server@11.0.0-rc.370)':
-    dependencies:
-      '@trpc/server': 11.0.0-rc.370
-
-  '@trpc/react-query@11.0.0-rc.370(@tanstack/react-query@5.36.1(react@18.2.0))(@trpc/client@11.0.0-rc.370(@trpc/server@11.0.0-rc.370))(@trpc/server@11.0.0-rc.370)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@tanstack/react-query': 5.36.1(react@18.2.0)
-      '@trpc/client': 11.0.0-rc.370(@trpc/server@11.0.0-rc.370)
-      '@trpc/server': 11.0.0-rc.370
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  '@trpc/server@11.0.0-rc.370': {}
 
   '@types/eslint@8.56.10':
     dependencies:

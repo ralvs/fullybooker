@@ -7,7 +7,6 @@ import Container from '@mui/material/Container'
 import { ThemeProvider } from '@mui/material/styles'
 
 import theme from '@/lib/theme'
-import { TRPCReactProvider } from '@/trpc/react'
 
 import TopNav from './_components/TopNav'
 
@@ -41,13 +40,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
-            <TRPCReactProvider>
-              <TopNav />
+            <TopNav />
 
-              <Container maxWidth='lg' component='main' sx={{ pt: 4 }}>
-                {children}
-              </Container>
-            </TRPCReactProvider>
+            <Container maxWidth='lg' component='main' sx={{ pt: 4 }}>
+              {children}
+            </Container>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
