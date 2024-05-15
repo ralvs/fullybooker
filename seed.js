@@ -87,7 +87,7 @@ async function main() {
 
   let currentCheckIn = new Date(now)
 
-  for (let userId = 1; userId <= numUsers; userId++) {
+  for (let userId = 2; userId <= numUsers; userId++) {
     for (let placeId = 1; placeId <= numPlaces; placeId++) {
       if (currentCheckIn >= twoMonthsFromNow) {
         break

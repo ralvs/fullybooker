@@ -1,9 +1,11 @@
+import dayjs from 'dayjs'
 import Link from 'next/link'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
+import Paper from '@mui/material/Paper'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 
@@ -66,6 +68,14 @@ const PlaceDetails = async ({ id }: { id: number }) => {
     },
   })
 
+  // ################################################
+  // getting the unavailable dates just for the user test the overlapping
+  const unavailable = await db.booking.findMany({
+    where: { placeId: id, checkIn: { gte: dayjs().toISOString() }, userId: { not: 1 } },
+    select: { checkIn: true, checkOut: true },
+  })
+  // ################################################
+
   return (
     <>
       {/* Navigation */}
@@ -118,6 +128,15 @@ const PlaceDetails = async ({ id }: { id: number }) => {
           {data?.description}
         </Typography>
       </Box>
+
+      {/* To employer test the overlaping */}
+      <Paper sx={{ p: 2, mt: 6, backgroundColor: '#ccc' }}>
+        <Typography variant='subtitle2'>
+          * This is not part of the project. Just to make easier for the employer test the overlap control. *
+        </Typography>
+        <Typography variant='subtitle2'>Unavailable dates:</Typography>
+        <pre>{JSON.stringify(unavailable, null, 2)}</pre>
+      </Paper>
     </>
   )
 }

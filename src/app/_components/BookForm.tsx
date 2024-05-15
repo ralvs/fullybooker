@@ -65,6 +65,7 @@ const BookForm = ({ bookId = 0, placeId = 0, guests = 1 }) => {
                   {...field}
                   sx={{ width: '100%' }}
                   label='Check-in'
+                  disablePast
                   value={field.value ? dayjs(field.value) : null}
                   onChange={date => field.onChange(dayjs(date).toDate())}
                   slotProps={{
@@ -86,6 +87,7 @@ const BookForm = ({ bookId = 0, placeId = 0, guests = 1 }) => {
                   {...field}
                   sx={{ width: '100%' }}
                   label='Check-out'
+                  disablePast
                   value={field.value ? dayjs(field.value) : null}
                   onChange={date => field.onChange(dayjs(date).toDate())}
                   slotProps={{

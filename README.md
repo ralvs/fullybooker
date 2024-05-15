@@ -24,3 +24,10 @@ Please clone this repository and run the folloing commands:
 `npm run db:init`<br>
 `npm run build`<br>
 `npm run start`
+
+## Lighthouse test
+- Desktop<br>
+![Desktop Test](prisma/imagesCloud/desktop.png)
+
+- Mobile<br>
+![Mobile Test](prisma/imagesCloud/mobile.png)
